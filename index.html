@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.btn{
+color: red;
+}
+.games1{
+  display: flex;
+  flex-wrap: wrap;
+  
+justify-content: space-between;
+margin-left: 30px;
+margin-right: 30px;
+}
+.flex{
+  flex: 1 1 calc(33.333% - 20px);
+    box-sizing: border-box;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+}
+
+.cent{
+text-align: center;
+
+}
+.android,.pc{
+font-family: courier new;
+font-size: 20px;
+font-weight: bold;
+}
+.text-game{
+font-family: serif;
+margin-left: 5%;
+margin-right: 5%;
+font-size: small;
+
+
+}
+.image-game{
+width: 200px;
+height: 200px;
+transition: .5s ease-in-out;
+border-radius: 30px;
+  }
+  .image-game:hover{
+   
+    width: 250px;
+    height: 250px;
+transform: scale(1.1);
+  }
+
+* {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  nav {
+    padding: 5px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    z-index: 1;
+  }
+  nav .logo {
+    display: flex;
+    align-items: center;
+  }
+  nav .logo img {
+    height: 25px;
+    width: auto;
+    margin-right: 10px;
+  }
+  nav .logo h1 {
+    font-size: 1.1rem;
+    background: linear-gradient(to right, #b927fc 0%, #2c64fc 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+
+  .search-container {
+    position: relative;
+    width: 80%;
+    max-width: 400px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    background-color: white; 
+}
+
+.search-input:focus {
+    outline: none;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+    background-color: #f0f0f0; 
+}
+
+.search-button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 45px;
+    height: 45px;
+    border: none;
+    background-color:white;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-button img {
+    width: 20px;
+    height: 20px;
+}
+
+.search-button:hover {
+    background-color: teal;
+}
+
+.search-button:active {
+    transform: translateY(-50%) scale(0.95); 
+}
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+  }
+  nav ul li {
+    margin-left: 1.5rem;
+  }
+  nav ul li a {
+    text-decoration: none;
+    color: #000;
+    font-size: 95%;
+    font-weight: 400;
+    padding: 4px 8px;
+    border-radius: 5px;
+  }
+  
+  nav ul li a:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .hamburger {
+    display: none;
+    cursor: pointer;
+  }
+  
+  .hamburger .line {
+    width: 25px;
+    height: 1px;
+    background-color: #1f1f1f;
+    display: block;
+    margin: 7px auto;
+    transition: all 0.3s ease-in-out;
+  }
+  .hamburger-active {
+    transition: all 0.3s ease-in-out;
+    transition-delay: 0.6s;
+    transform: rotate(45deg);
+  }
+  
+  .hamburger-active .line:nth-child(2) {
+    width: 0px;
+  }
+  
+  .hamburger-active .line:nth-child(1),
+  .hamburger-active .line:nth-child(3) {
+    transition-delay: 0.3s;
+  }
+  
+  .hamburger-active .line:nth-child(1) {
+    transform: translateY(12px);
+  }
+  
+  .hamburger-active .line:nth-child(3) {
+    transform: translateY(-5px) rotate(90deg);
+  }
+  
+  .menubar {
+    position: absolute;
+    top: 0;
+    left: -60%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 60%;
+    height: 100vh;
+    padding: 20% 0;
+    background: rgba(255, 255, 255);
+    transition: all 0.5s ease-in;
+    z-index: 2;
+  }
+  .active {
+    left: 0;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  }
+  
+  .menubar ul {
+    padding: 0;
+    list-style: none;
+  }
+  .menubar ul li {
+    margin-bottom: 32px;
+  }
+  
+  .menubar ul li a {
+    text-decoration: none;
+    color: #000;
+    font-size: 95%;
+    font-weight: 400;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+  
+  .menubar ul li a:hover {
+    background-color: #f5f5f5;
+  }
+  @media screen and (max-width: 790px) {
+    .search-input {
+        font-size: 16px;
+        padding: 10px 15px;
+        margin-left: 15%;
+    }
+  .arr2{
+width: 500px;
+
+  }
+
+  
+
+    .search-button {
+        width: 40px;
+        height: 40px;
+    }
+
+    .hamburger {
+      display: block;
+    }
+    nav ul {
+      display: none;
+    }
+  }
+  
+  .container {
+  position: relative;
+}
+
+.mySlides {
+  display: none;
+}
+
+
+
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  
+  padding: 16px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.next {
+  right: 35%;
+  border-radius: 3px 0 0 3px;
+  color: black;
+}
+.prev {
+  left: 35%;
+  border-radius: 3px 0 0 3px;
+  color: black;
+}
+
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: black;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+
+  .arr{
+    width: 20%;
+    height: 20%;
+  }
+  
+  #loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 120px;
+    height: 120px;
+    margin: -76px 0 0 -76px;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #121111;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+  }
+  
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  .intro{
+  font-size: 20px;
+  
+  }
+  .animate-bottom {
+    position: relative;
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: 1s;
+    animation-name: animatebottom;
+    animation-duration: 1s
+  }
+  a{
+text-decoration: none;
+color: green;
+
+  }
+  .button {
+  background-color: #c2fbd7;
+  border-radius: 100px;
+  box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset,rgba(44, 187, 99, .15) 0 1px 2px,rgba(44, 187, 99, .15) 0 2px 4px,rgba(44, 187, 99, .15) 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
+  color: green;
+  cursor: pointer;
+  display: inline-block;
+  font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+  padding: 7px 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  font-size: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button:hover {
+  box-shadow: rgba(44,187,99,.35) 0 -25px 18px -14px inset,rgba(44,187,99,.25) 0 1px 2px,rgba(44,187,99,.25) 0 2px 4px,rgba(44,187,99,.25) 0 4px 8px,rgba(44,187,99,.25) 0 8px 16px,rgba(44,187,99,.25) 0 16px 32px;
+  transform: scale(1.05) rotate(-1deg);
+}
+
+
+  @-webkit-keyframes animatebottom {
+    from { bottom:-100px; opacity:0 } 
+    to { bottom:0px; opacity:1 }
+  }
+  
+  @keyframes animatebottom { 
+    from{ bottom:-100px; opacity:0 } 
+    to{ bottom:0; opacity:1 }
+  }
+  
+  #myDiv {
+    display: none;
+    text-align: center;
+  }
+</style>
+</head>
+<body onload="myFunction()" style="margin:0;">
+
+    <div id="loader"></div>
+
+    <div style="display:none;" id="myDiv" class="animate-bottom">
+        <div class="toop"> 
+    <nav>
+        <div class="logo">
+          <img src="https://static.thenounproject.com/png/125092-84.png" alt="logo" />
+          <h1>MS KING</h1>
+        </div>
+        <ul>
+          <li class="search-container">
+            <input type="text" class="search-input" placeholder="Search...">
+            <button class="search-button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+              </svg>
+            </button>
+          </li>
+       
+          <li>
+            <a href="#">Home</a>
+          </li>
+          <li>
+            <a href="free games.html">Free Games</a>
+          </li>
+          <li>
+            <a href="premium games.html">Premium Games</a>
+          </li>
+          <li>
+            <a href="#">Contact Us</a>
+          </li>
+        </ul>
+        <div class="hamburger">
+          <span class="line"></span>
+          <span class="line"></span>
+          <span class="line"></span>
+        </div>
+      </nav>
+      <div class="menubar">
+        <ul>
+          <li class="search-container">
+            <input type="text" class="search-input" placeholder="Search...">
+            <button class="search-button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+              </svg>
+            </button>
+          </li>
+       
+          <li>
+            <a href="#">Home</a>
+          </li>
+          <li>
+            <a href="free games.html">Free Games</a>
+          </li>
+          <li>
+            <a href="premium games.html">Premium Games</a>
+          </li>
+          <li>
+            <a href="#">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+
+     <br><h2>WELCOME TO THE MS GAMING WEBSITE</h2><br> <hr>
+     <div class="container">
+
+   
+      <div class="mySlides">
+        <div class="numbertext">FREE FIRE</div>
+          <img class="arr" src="https://play-lh.googleusercontent.com/jft5dckkhc_7hjsZBgEorUA6C3jUxkjYhEIR6R-WFMaeKvvd8DVtDXQj1O6Dit7bj9s" >
+      </div>
+    
+      <div class="mySlides">
+        <div class="numbertext">BGMI</div>
+          <img class="arr" src="https://upload.wikimedia.org/wikipedia/en/thumb/6/63/Battleground_Mobile_India.webp/240px-Battleground_Mobile_India.webp.png" >
+      </div>
+    
+      <div class="mySlides">
+        <div class="numbertext">MINECRAFT</div>
+          <img class="arr" src="https://play-lh.googleusercontent.com/27O5tpaYE82W6m30rJ_MX3-UvshlDM6O8oXDxb6GseYW2T7P8UNT19727MGmz-0q3w" >
+      </div>
+    
+      <div class="mySlides">
+        <div class="numbertext">CALL OF DUTY</div>
+          <img class="arr" src="https://play-lh.googleusercontent.com/AtGuphTcfffarHBaw2mn4PHZh6SxSUjbZbSDuL0s_8apx--rXrtu3TNIs43O2_oZCQ" >
+      </div>
+    
+      <div class="mySlides">
+        <div class="numbertext">GTA SA</div>
+        <img class="arr2">  <img class="arr" src="https://play-lh.googleusercontent.com/XRlCpj22PFJuFK43QcE3u5RxmoNUed7YO_zG-6F1PCqjrBIIURbTBDvTgLVVIk5pNeY=w240-h480-rw" >
+      </img>  </div>
+    
+      <div class="mySlides">
+        <div class="numbertext">GRANNY</div>
+          <img class="arr" src="https://play-lh.googleusercontent.com/yT_LBq_tyKeIDohKDsqN_Qt18jGIPUYIxY2C-1-E2YA9Qd60uZW08pua17qBmIiDPA=w240-h480-rw" >
+      </div>
+    
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    
+     
+      </div>
+    </div>
+     <br><br>
+   
+                     <div class="games1">
+                      <div class="flex">
+                      
+                      
+                   <img class="image-game" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlBTOqyFJo1EO8YFwMKje3lFUx-Sp3h9HVJw&s" alt="Free Fire">
+                      </img>
+                      
+                      <p>
+                      <span class="android">Download For Android</span><br>
+              
+                      <button class="button" role="button"><a href="https://play.google.com/store/apps/details?id=com.dts.freefiremax&hl=en_IN">Download</a></button>
+                      </p>
+                      <p>
+                        <span class="pc">Download For Window</span><br>
+                      <button class="button" role="button"><a href="https://play.google.com/googleplaygames?hl=en_IN">Download</a></button>
+                      </p>
+                      </div>
+                      <div class="flex">
+                      
+                      
+                        <img class="image-game" src="https://play-lh.googleusercontent.com/27O5tpaYE82W6m30rJ_MX3-UvshlDM6O8oXDxb6GseYW2T7P8UNT19727MGmz-0q3w" alt="Minecraft">
+                           </img>
+                           
+                           <p>
+                           <span class="android">Download For Android</span><br>
+                   
+                           <button class="button" role="button"><a href="https://play.google.com/store/apps/details?id=com.mojang.minecraftpe&hl=en_IN">Download</a></button>
+                           </p>
+                           <p>
+                             <span class="pc">Download For Window</span><br>
+                           <button class="button" role="button"><a href="https://www.minecraft.net/en-us/store/minecraft-java-bedrock-edition-pc">Download</a></button>
+                           </p>
+                           </div>
+                           <div class="flex">
+                   
+                           
+                      
+                            <img class="image-game" src="https://upload.wikimedia.org/wikipedia/en/thumb/6/63/Battleground_Mobile_India.webp/240px-Battleground_Mobile_India.webp.png"alt="BGMI">
+                               </img>
+                               
+                               <p>
+                               <span class="android">Download For Android</span><br>
+                       
+                               <button class="button" role="button"><a href="https://play.google.com/store/apps/details?id=com.pubg.imobile&hl=en_IN">Download</a></button>
+                               </p>
+                               <p>
+                                 <span class="pc">Download For Window</span><br>
+                               <button class="button" role="button"><a href="https://www.battlegroundsmobileindiaforpc.in/">Download</a></button>
+                               </p>
+                               </div>
+              
+                               <div class="flex">
+                   
+                           
+                      
+                                <img class="image-game" src="https://play-lh.googleusercontent.com/XRlCpj22PFJuFK43QcE3u5RxmoNUed7YO_zG-6F1PCqjrBIIURbTBDvTgLVVIk5pNeY=w240-h480-rw"alt="Gta Sa">
+                                   </img>
+                                   
+                                   <p>
+                                   <span class="android">Download For Android</span><br>
+                           
+                                   <button class="button" role="button"><a href="https://play.google.com/store/apps/details?id=com.rockstargames.gtasa&hl=en_IN">Download</a></button>
+                                   </p>
+                                   <p>
+                                     <span class="pc">Download For Window</span><br>
+                                   <button class="button" role="button"><a href="https://www.rockstargames.com/games/sanandreas">Download</a></button>
+                                   </p>
+                                   </div>
+                       
+                         
+                                   
+                                    <div class="flex">
+                                    
+                                    
+                                 <img class="image-game" src="https://cdn1.epicgames.com/offer/611482b8586142cda48a0786eb8a127c/EGS_DeadbyDaylight_BehaviourInteractive_S1_2560x1440-a32581cf9948a9a2e24b2ff15c1577c7" alt="Dead By Daylight">
+                                    </img>
+                                    
+                                    <p>
+                                    <span class="android">Download For Android</span><br>
+                            
+                                    <button class="button" role="button"><a href="https://play.google.com/store/apps/details?id=com.netease.dbdena&hl=en_IN">Download</a></button>
+                                    </p>
+                                    <p>
+                                      <span class="pc">Download For Window</span><br>
+                                    <button class="button" role="button"><a href="https://deadbydaylight.com/">Download</a></button>
+                                    </p>
+                                    </div>
+                                    <div class="flex">
+                                    
+                                    
+                                      <img class="image-game" src="https://static.gameloop.com/img/2f21ccd7c43ee987dff274bc06e5835b.png?imageMogr2/thumbnail/172.8x172.8/format/webp" alt="Subway Surfer">
+                                         </img>
+                                         
+                                         <p>
+                                         <span class="android">Download For Android</span><br>
+                                 
+                                         <button class="button" role="button"><a href="https://play.google.com/store/apps/details?id=com.kiloo.subwaysurf&hl=en_IN">Download</a></button>
+                                         </p>
+                                         <p>
+                                           <span class="pc">Download For Window</span><br>
+                                         <button class="button" role="button"><a href="https://www.gameloop.com/game/arcade/subway-surfers-on-pc">Download</a></button>
+                                         </p>
+                                         </div>
+                                         <div class="flex">
+                                 
+                                         
+                                    
+                                          <img class="image-game" src="https://play-lh.googleusercontent.com/AtGuphTcfffarHBaw2mn4PHZh6SxSUjbZbSDuL0s_8apx--rXrtu3TNIs43O2_oZCQ"alt="Call Of Duty">
+                                             </img>
+                                             
+                                             <p>
+                                             <span class="android">Download For Android</span><br>
+                                     
+                                             <button class="button" role="button"><a href="https://play.google.com/store/apps/details?id=com.activision.callofduty.shooter&hl=en_IN">Download</a></button>
+                                             </p>
+                                             <p>
+                                               <span class="pc">Download For Window</span><br>
+                                             <button class="button" role="button"><a href="https://www.callofduty.com/modernwarfare/pc">Download</a></button>
+                                             </p>
+                                             </div>
+                            
+                                             <div class="flex">
+                                 
+                                         
+                                    
+                                              <img class="image-game" src="https://play-lh.googleusercontent.com/yT_LBq_tyKeIDohKDsqN_Qt18jGIPUYIxY2C-1-E2YA9Qd60uZW08pua17qBmIiDPA=w240-h480-rw"alt="Granny">
+                                                 </img>
+                                                 
+                                                 <p>
+                                                 <span class="android">Download For Android</span><br>
+                                         
+                                                 <button class="button" role="button"><a href="https://play.google.com/store/apps/details?id=com.dvloper.granny&hl=en_IN">Download</a></button>
+                                                 </p>
+                                                 <p>
+                                                   <span class="pc">Download For Window</span><br>
+                                                 <button class="button" role="button"><a href="https://granny.en.softonic.com/">Download</a></button>
+                                                 </p>
+                                                 </div>
+                                                 <div class="flex">
+                                 
+                                         
+                                    
+                                                  <img class="image-game" src="data:image/jpeg;base64,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"alt="Candy Crush">
+                                                     </img>
+                                                     
+                                                     <p>
+                                                     <span class="android">Download For Android</span><br>
+                                             
+                                                     <button class="button" role="button"><a href="https://play.google.com/store/apps/details?id=com.king.candycrushsaga&hl=en_IN">Download</a></button>
+                                                     </p>
+                                                     <p>
+                                                       <span class="pc">Download For Window</span><br>
+                                                     <button class="button" role="button"><a href="https://candy-crush-saga.en.softonic.com/?psafe_param=1&utm_source=SEM&utm_medium=paid&utm_campaign=EN_INDIA_DSA_HKD&gad_source=1&gclid=Cj0KCQiA88a5BhDPARIsAFj595iZoOKQnOM5BN4AB43upzn8ME7pCQb_Q7HKXCwRaP7prEEQ_PxFB1UaAvzEEALw_wcB">Download</a></button>
+                                                     </p>
+                                                     </div>
+                                     
+             
+           
+         
+              
+         
+         
+    
+          
+
+  
+    
+    
+   
+
+     
+
+
+<script>
+var myVar;
+
+function myFunction() {
+  myVar = setTimeout(showPage, 3000);
+}
+
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("myDiv").style.display = "block";
+}
+const mobileNav = document.querySelector(".hamburger");
+const navbar = document.querySelector(".menubar");
+
+const toggleNav = () => {
+  navbar.classList.toggle("active");
+  mobileNav.classList.toggle("hamburger-active");
+};
+mobileNav.addEventListener("click", () => toggleNav());
+
+
+let slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("demo");
+  let captionText = document.getElementById("caption");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+  captionText.innerHTML = dots[slideIndex-1].alt;
+}
+</script>
+
+</body>
+</html>
