@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.btn{
+color: red;
+}
+.games1{
+  display: flex;
+  flex-wrap: wrap;
+  
+justify-content: space-between;
+margin-left: 30px;
+margin-right: 30px;
+}
+.flex{
+  flex: 1 1 calc(33.333% - 20px);
+    box-sizing: border-box;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+}
+
+.cent{
+text-align: center;
+
+}
+.android,.pc{
+font-family: courier new;
+font-size: 20px;
+font-weight: bold;
+}
+.text-game{
+font-family: serif;
+margin-left: 5%;
+margin-right: 5%;
+font-size: small;
+
+
+}
+.image-game{
+width: 200px;
+height: 200px;
+transition: .5s ease-in-out;
+border-radius: 30px;
+  }
+  .image-game:hover{
+   
+    width: 250px;
+    height: 250px;
+transform: scale(1.1);
+  }
+
+* {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  nav {
+    padding: 5px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    z-index: 1;
+  }
+  nav .logo {
+    display: flex;
+    align-items: center;
+  }
+  nav .logo img {
+    height: 25px;
+    width: auto;
+    margin-right: 10px;
+  }
+  nav .logo h1 {
+    font-size: 1.1rem;
+    background: linear-gradient(to right, #b927fc 0%, #2c64fc 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+  }
+  nav ul li {
+    margin-left: 1.5rem;
+  }
+  nav ul li a {
+    text-decoration: none;
+    color: #000;
+    font-size: 95%;
+    font-weight: 400;
+    padding: 4px 8px;
+    border-radius: 5px;
+  }
+  
+  nav ul li a:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .hamburger {
+    display: none;
+    cursor: pointer;
+  }
+  
+  .hamburger .line {
+    width: 25px;
+    height: 1px;
+    background-color: #1f1f1f;
+    display: block;
+    margin: 7px auto;
+    transition: all 0.3s ease-in-out;
+  }
+  .hamburger-active {
+    transition: all 0.3s ease-in-out;
+    transition-delay: 0.6s;
+    transform: rotate(45deg);
+  }
+  
+  .hamburger-active .line:nth-child(2) {
+    width: 0px;
+  }
+  
+  .hamburger-active .line:nth-child(1),
+  .hamburger-active .line:nth-child(3) {
+    transition-delay: 0.3s;
+  }
+  
+  .hamburger-active .line:nth-child(1) {
+    transform: translateY(12px);
+  }
+  
+  .hamburger-active .line:nth-child(3) {
+    transform: translateY(-5px) rotate(90deg);
+  }
+  
+  .menubar {
+    position: absolute;
+    top: 0;
+    left: -60%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 60%;
+    height: 100vh;
+    padding: 20% 0;
+    background: rgba(255, 255, 255);
+    transition: all 0.5s ease-in;
+    z-index: 2;
+  }
+  .active {
+    left: 0;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  }
+  
+  .menubar ul {
+    padding: 0;
+    list-style: none;
+  }
+  .menubar ul li {
+    margin-bottom: 32px;
+  }
+  
+  .menubar ul li a {
+    text-decoration: none;
+    color: #000;
+    font-size: 95%;
+    font-weight: 400;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+  
+  .menubar ul li a:hover {
+    background-color: #f5f5f5;
+  }
+  @media screen and (max-width: 790px) {
+    .right{
+      width: 150px;
+      height: 150px;
+  
+
+    }
+    .games1,.games2{
+
+justify-content: center;
+
+    }
+    .right:hover{
+width: 200px;
+height: 200px;
+
+    }
+    .hamburger {
+      display: block;
+    }
+    nav ul {
+      display: none;
+    }
+  }
+  
+  
+  
+  
+  #loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 120px;
+    height: 120px;
+    margin: -76px 0 0 -76px;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #ee1111;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+  }
+  
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  .intro{
+  font-size: 20px;
+  
+  }
+  .animate-bottom {
+    position: relative;
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: 1s;
+    animation-name: animatebottom;
+    animation-duration: 1s
+  }
+  a{
+text-decoration: none;
+color: green;
+
+  }
+  .button {
+  background-color: #c2fbd7;
+  border-radius: 100px;
+  box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset,rgba(44, 187, 99, .15) 0 1px 2px,rgba(44, 187, 99, .15) 0 2px 4px,rgba(44, 187, 99, .15) 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
+  color: green;
+  cursor: pointer;
+  display: inline-block;
+  font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+  padding: 7px 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  font-size: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button:hover {
+  box-shadow: rgba(44,187,99,.35) 0 -25px 18px -14px inset,rgba(44,187,99,.25) 0 1px 2px,rgba(44,187,99,.25) 0 2px 4px,rgba(44,187,99,.25) 0 4px 8px,rgba(44,187,99,.25) 0 8px 16px,rgba(44,187,99,.25) 0 16px 32px;
+  transform: scale(1.05) rotate(-1deg);
+}
+
+  @-webkit-keyframes animatebottom {
+    from { bottom:-100px; opacity:0 } 
+    to { bottom:0px; opacity:1 }
+  }
+  
+  @keyframes animatebottom { 
+    from{ bottom:-100px; opacity:0 } 
+    to{ bottom:0; opacity:1 }
+  }
+  
+  #myDiv {
+    display: none;
+    text-align: center;
+  }
+</style>
+</head>
+<body onload="myFunction()" style="margin:0;">
+
+    <div id="loader"></div>
+
+    <div style="display:none;" id="myDiv" class="animate-bottom">
+        <div class="toop"> 
+    <nav>
+        <div class="logo">
+          <img src="https://static.thenounproject.com/png/125092-84.png" alt="logo" />
+          <h1>MS KING</h1>
+        </div>
+        <ul>
+          <li>
+            <a href="index.html">Home</a>
+          </li>
+          <li>
+            <a href="#">Free Games</a>
+          </li>
+          <li>
+            <a href="premium games.html">Premium Games</a>
+          </li>
+          <li>
+            <a href="#">Contact Us</a>
+          </li>
+        </ul>
+        <div class="hamburger">
+          <span class="line"></span>
+          <span class="line"></span>
+          <span class="line"></span>
+        </div>
+      </nav>
+      <div class="menubar">
+        <ul>
+          <li>
+            <a href="index.html">Home</a>
+          </li>
+          <li>
+            <a href="#">Free Games</a>
+          </li>
+          <li>
+            <a href="premium games.html">Premium Games</a>
+          </li>
+          <li>
+            <a href="#">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+     <br><h2>FREE GAMES</h2><br> <hr><br><br>
+   
+                     <div class="games1">
+                      <div class="flex">
+                      
+                      
+                   <img class="image-game" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlBTOqyFJo1EO8YFwMKje3lFUx-Sp3h9HVJw&s" alt="Free Fire">
+                      </img>
+                      
+                      <p>
+                      <span class="android">Download For Android</span><br>
+              
+                      <button class="button" role="button"><a href="https://play.google.com/store/apps/details?id=com.dts.freefiremax&hl=en_IN">Download</a></button>
+                      </p>
+                      <p>
+                        <span class="pc">Download For Window</span><br>
+                      <button class="button" role="button"><a href="https://play.google.com/googleplaygames?hl=en_IN">Download</a></button>
+                      </p>
+                      </div>
+                      <div class="flex">
+                      
+                      
+                        <img class="image-game" src="https://play-lh.googleusercontent.com/27O5tpaYE82W6m30rJ_MX3-UvshlDM6O8oXDxb6GseYW2T7P8UNT19727MGmz-0q3w" alt="Minecraft">
+                           </img>
+                           
+                           <p>
+                           <span class="android">Download For Android</span><br>
+                   
+                           <button class="button" role="button"><a href="https://play.google.com/store/apps/details?id=com.mojang.minecraftpe&hl=en_IN">Download</a></button>
+                           </p>
+                           <p>
+                             <span class="pc">Download For Window</span><br>
+                           <button class="button" role="button"><a href="https://www.minecraft.net/en-us/store/minecraft-java-bedrock-edition-pc">Download</a></button>
+                           </p>
+                           </div>
+                           <div class="flex">
+                   
+                           
+                      
+                            <img class="image-game" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFFjwN4kfL10zSZOBcgkrN0kgptXBinsRUMmAImsQLvSB5ZJVGodTVM-aur-aLKvXhHZE&usqp=CAU"alt="BGMI">
+                               </img>
+                               
+                               <p>
+                               <span class="android">Download For Android</span><br>
+                       
+                               <button class="button" role="button"><a href="https://play.google.com/store/apps/details?id=com.pubg.imobile&hl=en_IN">Download</a></button>
+                               </p>
+                               <p>
+                                 <span class="pc">Download For Window</span><br>
+                               <button class="button" role="button"><a href="https://www.battlegroundsmobileindiaforpc.in/">Download</a></button>
+                               </p>
+                               </div>
+              
+                               <div class="flex">
+                   
+                           
+                      
+                                <img class="image-game" src="https://play-lh.googleusercontent.com/XRlCpj22PFJuFK43QcE3u5RxmoNUed7YO_zG-6F1PCqjrBIIURbTBDvTgLVVIk5pNeY=w240-h480-rw"alt="Gta Sa">
+                                   </img>
+                                   
+                                   <p>
+                                   <span class="android">Download For Android</span><br>
+                           
+                                   <button class="button" role="button"><a href="https://play.google.com/store/apps/details?id=com.rockstargames.gtasa&hl=en_IN">Download</a></button>
+                                   </p>
+                                   <p>
+                                     <span class="pc">Download For Window</span><br>
+                                   <button class="button" role="button"><a href="https://www.rockstargames.com/games/sanandreas">Download</a></button>
+                                   </p>
+                                   </div>
+                       
+                         
+                                   
+                                    <div class="flex">
+                                    
+                                    
+                                 <img class="image-game" src="https://cdn1.epicgames.com/offer/611482b8586142cda48a0786eb8a127c/EGS_DeadbyDaylight_BehaviourInteractive_S1_2560x1440-a32581cf9948a9a2e24b2ff15c1577c7" alt="Dead By Daylight">
+                                    </img>
+                                    
+                                    <p>
+                                    <span class="android">Download For Android</span><br>
+                            
+                                    <button class="button" role="button"><a href="https://play.google.com/store/apps/details?id=com.netease.dbdena&hl=en_IN">Download</a></button>
+                                    </p>
+                                    <p>
+                                      <span class="pc">Download For Window</span><br>
+                                    <button class="button" role="button"><a href="https://deadbydaylight.com/">Download</a></button>
+                                    </p>
+                                    </div>
+                                    <div class="flex">
+                                    
+                                    
+                                      <img class="image-game" src="https://static.gameloop.com/img/2f21ccd7c43ee987dff274bc06e5835b.png?imageMogr2/thumbnail/172.8x172.8/format/webp" alt="Subway Surfer">
+                                         </img>
+                                         
+                                         <p>
+                                         <span class="android">Download For Android</span><br>
+                                 
+                                         <button class="button" role="button"><a href="https://play.google.com/store/apps/details?id=com.kiloo.subwaysurf&hl=en_IN">Download</a></button>
+                                         </p>
+                                         <p>
+                                           <span class="pc">Download For Window</span><br>
+                                         <button class="button" role="button"><a href="https://www.gameloop.com/game/arcade/subway-surfers-on-pc">Download</a></button>
+                                         </p>
+                                         </div>
+                                         <div class="flex">
+                                 
+                                         
+                                    
+                                          <img class="image-game" src="https://play-lh.googleusercontent.com/AtGuphTcfffarHBaw2mn4PHZh6SxSUjbZbSDuL0s_8apx--rXrtu3TNIs43O2_oZCQ"alt="Call Of Duty">
+                                             </img>
+                                             
+                                             <p>
+                                             <span class="android">Download For Android</span><br>
+                                     
+                                             <button class="button" role="button"><a href="https://play.google.com/store/apps/details?id=com.activision.callofduty.shooter&hl=en_IN">Download</a></button>
+                                             </p>
+                                             <p>
+                                               <span class="pc">Download For Window</span><br>
+                                             <button class="button" role="button"><a href="https://www.callofduty.com/modernwarfare/pc">Download</a></button>
+                                             </p>
+                                             </div>
+                            
+                                             <div class="flex">
+                                 
+                                         
+                                    
+                                              <img class="image-game" src="https://play-lh.googleusercontent.com/yT_LBq_tyKeIDohKDsqN_Qt18jGIPUYIxY2C-1-E2YA9Qd60uZW08pua17qBmIiDPA=w240-h480-rw"alt="Granny">
+                                                 </img>
+                                                 
+                                                 <p>
+                                                 <span class="android">Download For Android</span><br>
+                                         
+                                                 <button class="button" role="button"><a href="https://play.google.com/store/apps/details?id=com.dvloper.granny&hl=en_IN">Download</a></button>
+                                                 </p>
+                                                 <p>
+                                                   <span class="pc">Download For Window</span><br>
+                                                 <button class="button" role="button"><a href="https://granny.en.softonic.com/">Download</a></button>
+                                                 </p>
+                                                 </div>
+                                     
+             
+           
+         
+              
+         
+         
+    
+          
+
+  
+    
+    
+   
+
+     
+
+
+<script>
+var myVar;
+
+function myFunction() {
+  myVar = setTimeout(showPage, 3000);
+}
+
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("myDiv").style.display = "block";
+}
+const mobileNav = document.querySelector(".hamburger");
+const navbar = document.querySelector(".menubar");
+
+const toggleNav = () => {
+  navbar.classList.toggle("active");
+  mobileNav.classList.toggle("hamburger-active");
+};
+mobileNav.addEventListener("click", () => toggleNav());
+
+</script>
+
+</body>
+</html>
